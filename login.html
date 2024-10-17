@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>تسجيل الدخول</title>
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Alexandria', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            direction: rtl;
+            text-align: center;
+        }
+        .form-container {
+            max-width: 400px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        input {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            transition: transform 0.2s ease, box-shadow 0.2s ease; /* إضافة تأثيرات التحول */
+        }
+        input:focus {
+            transform: scale(1.05); /* تكبير الحقل عند التركيز */
+            box-shadow: 0 0 10px rgba(0, 85, 153, 0.5); /* إضافة ظل عند التركيز */
+            outline: none; /* إزالة حدود التركيز الافتراضية */
+        }
+        button {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: none;
+            background-color: #005599;
+            color: white;
+            font-size: 16px;
+            cursor: pointer; /* تغيير المؤشر عند المرور فوق الزر */
+        }
+        button:hover {
+            background-color: #003f7f; /* تغيير لون الزر عند التحويم */
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>تسجيل الدخول</h1>
+    <div class="form-container">
+        <input type="text" id="username" placeholder="اسم المستخدم" required>
+        <input type="password" id="password" placeholder="كلمة المرور" required>
+        <button onclick="login()">تسجيل الدخول</button>
+        <p>ليس لديك حساب؟ <a href="signup.html">إنشاء حساب</a></p>
+    </div>
+
+    <script>
+        function login() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            // يجب التحقق من صحة بيانات المستخدم في خادم
+            // هذه الخطوة تمثل مكان إضافة عملية التحقق
+            if (username && password) {
+                // تخزين بيانات المستخدم في الذاكرة المحلية (فقط لأغراض الاختبار)
+                localStorage.setItem('username', username);
+                localStorage.setItem('password', password);
+
+                // الانتقال إلى الصفحة الرئيسية بعد تسجيل الدخول
+                window.location.href = 'index.html';
+            } else {
+                alert('يرجى ملء جميع الحقول!');
+            }
+        }
+    </script>
+
+</body>
+</html>

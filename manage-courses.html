@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>إدارة الكورسات - سهلنهالك</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Alexandria', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            direction: rtl;
+        }
+
+        header {
+            background-color: #003366;
+            padding: 20px;
+            text-align: center;
+            color: white;
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #003366;
+            color: white;
+            position: fixed;
+            bottom: 0;
+            width: 100%;
+        }
+
+        h1 {
+            color: #003366;
+            font-size: 36px;
+        }
+
+        .button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+
+        .button:hover {
+            background-color: #005599;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        table, th, td {
+            border: 1px solid #ccc;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #e9e9e9;
+        }
+
+        .form-container {
+            margin-top: 40px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        .form-container input[type="text"],
+        .form-container input[type="number"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+
+        .form-container input[type="submit"] {
+            background-color: #003366;
+            color: white;
+            border: none;
+            cursor: pointer;
+            padding: 10px 20px;
+            border-radius: 5px;
+            transition: background-color 0.3s;
+        }
+
+        .form-container input[type="submit"]:hover {
+            background-color: #005599;
+        }
+
+        .edit-form-container {
+            display: none;
+            margin-top: 20px;
+            background-color: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <h1>إدارة الكورسات</h1>
+    </header>
+
+    <main>
+        <h2>الكورسات الحالية</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>اسم الكورس</th>
+                    <th>السعر</th>
+                    <th>الإجراءات</th>
+                </tr>
+            </thead>
+            <tbody id="coursesTableBody">
+                <tr>
+                    <td>كورس البرمجة الأساسية</td>
+                    <td>100 ر.س</td>
+                    <td>
+                        <button class="button" onclick="showEditForm('كورس البرمجة الأساسية', 100)">تعديل</button>
+                        <button class="button" onclick="deleteCourse('كورس البرمجة الأساسية')">حذف</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>كورس تصميم المواقع</td>
+                    <td>150 ر.س</td>
+                    <td>
+                        <button class="button" onclick="showEditForm('كورس تصميم المواقع', 150)">تعديل</button>
+                        <button class="button" onclick="deleteCourse('كورس تصميم المواقع')">حذف</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="form-container">
+            <h2>إضافة كورس جديد</h2>
+            <form id="addCourseForm">
+                <input type="text" id="courseName" placeholder="اسم الكورس" required>
+                <input type="number" id="coursePrice" placeholder="السعر" required>
+                <input type="submit" value="إضافة الكورس">
+            </form>
+        </div>
+
+        <div class="edit-form-container" id="editFormContainer">
+            <h2>تعديل الكورس</h2>
+            <form id="editCourseForm">
+                <input type="text" id="editCourseName" placeholder="اسم الكورس" required>
+                <input type="number" id="editCoursePrice" placeholder="السعر" required>
+                <input type="submit" value="تعديل الكورس">
+            </form>
+        </div>
+    </main>
+
+    <footer>
+        <p>حقوق النشر &copy; 2024 سهلنهالك. جميع الحقوق محفوظة.</p>
+    </footer>
+
+    <script>
+        document.getElementById('addCourseForm').onsubmit = function(event) {
+            event.preventDefault();
+            const courseName = document.getElementById('courseName').value;
+            const coursePrice = document.getElementById('coursePrice').value;
+
+            alert(`تم إضافة الكورس: ${courseName} بسعر: ${coursePrice} ر.س`);
+        };
+
+        function showEditForm(courseName, coursePrice) {
+            document.getElementById('editFormContainer').style.display = 'block';
+            document.getElementById('editCourseName').value = courseName;
+            document.getElementById('editCoursePrice').value = coursePrice;
+        }
+
+        document.getElementById('editCourseForm').onsubmit = function(event) {
+            event.preventDefault();
+            const updatedName = document.getElementById('editCourseName').value;
+            const updatedPrice = document.getElementById('editCoursePrice').value;
+
+            alert(`تم تعديل الكورس إلى: ${updatedName} بسعر: ${updatedPrice} ر.س`);
+            document.getElementById('editFormContainer').style.display = 'none';
+        };
+
+        function deleteCourse(courseName) {
+            if (confirm(`هل أنت متأكد أنك تريد حذف الكورس: ${courseName}?`)) {
+                alert(`تم حذف الكورس: ${courseName}`);
+            }
+        }
+    </script>
+
+</body>
+
+</html>

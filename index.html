@@ -1,0 +1,405 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>سهلنهالك</title>
+    
+    <link href="https://fonts.googleapis.com/css2?family=Alexandria:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Alexandria', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+            direction: rtl;
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        header {
+            background-color: #003366;
+            padding: 30px;
+            text-align: center;
+            color: white;
+            position: relative;
+        }
+
+        nav ul {
+            list-style-type: none;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin: 0 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 18px;
+        }
+
+        .dark-mode-toggle {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+        }
+
+        .dark-mode-toggle input[type="checkbox"] {
+            display: none;
+        }
+
+        .dark-mode-slider {
+            width: 50px;
+            height: 24px;
+            background-color: #ccc;
+            border-radius: 50px;
+            position: relative;
+            transition: background-color 0.3s;
+        }
+
+        .dark-mode-slider:before {
+            content: "";
+            position: absolute;
+            width: 22px;
+            height: 22px;
+            background-color: white;
+            border-radius: 50%;
+            top: 1px;
+            left: 1px;
+            transition: transform 0.3s;
+        }
+
+        input[type="checkbox"]:checked + .dark-mode-slider {
+            background-color: #003366;
+        }
+
+        input[type="checkbox"]:checked + .dark-mode-slider:before {
+            transform: translateX(26px);
+        }
+
+        section.hero {
+            text-align: center;
+            padding: 60px;
+            background-color: #ffffff;
+        }
+
+        section.hero h1 {
+            color: #003366;
+            font-size: 48px;
+            margin-bottom: 10px;
+        }
+
+        section.hero p {
+            color: #666;
+            font-size: 22px;
+        }
+
+        .know-more-button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            margin: 20px 0;
+            transition: background-color 0.3s;
+        }
+
+        .know-more-button:hover {
+            background-color: #005599;
+        }
+
+        section.teachers {
+            text-align: center;
+            padding: 40px;
+            background-color: #e9e9e9;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        section.teachers h2 {
+            color: #003366;
+            font-size: 30px;
+            margin-bottom: 15px;
+        }
+
+        section.teachers p {
+            color: #555;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .subscribe-button {
+            background-color: #003366;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s;
+        }
+
+        .subscribe-button:hover {
+            background-color: #005599;
+        }
+
+        .teachers-marquee {
+            overflow: hidden;
+            white-space: nowrap;
+            background-color: #B0E0E6;
+            padding: 10px 0;
+        }
+
+        .teachers-list {
+            display: inline-block;
+            animation: move 20s linear infinite;
+        }
+
+        @keyframes move {
+            0% { transform: translateX(100%); }
+            100% { transform: translateX(-100%); }
+        }
+
+        .teacher {
+            display: inline-block;
+            margin: 0 30px;
+            text-align: center;
+        }
+
+        .teacher img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            background-color: #003366;
+            color: white;
+            margin-top: 20px;
+            font-size: 18px;
+        }
+
+        .marquee {
+            background-color: #003366;
+            color: white;
+            padding: 10px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .marquee div {
+            display: inline-block;
+            padding-left: 100%;
+            animation: marquee 10s linear infinite;
+        }
+
+        @keyframes marquee {
+            0% { transform: translate(0); }
+            100% { transform: translate(-100%); }
+        }
+
+        .how-it-works {
+            text-align: center;
+            padding: 40px;
+            background-color: #ffffff;
+            margin: 20px 0;
+            border-radius: 10px;
+        }
+
+        .how-it-works h2 {
+            color: #003366;
+            font-size: 30px;
+            margin-bottom: 20px;
+        }
+
+        .how-it-works-list {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            font-size: 20px;
+            color: #555;
+        }
+
+        .how-it-works-item {
+            margin: 10px;
+            flex: 1;
+            text-align: center;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode header {
+            background-color: #1a1a1a;
+        }
+
+        .dark-mode .marquee {
+            background-color: #1a1a1a;
+        }
+
+        .dark-mode footer {
+            background-color: #1a1a1a;
+        }
+
+        .dark-mode .know-more-button,
+        .dark-mode .subscribe-button {
+            background-color: #1a1a1a;
+        }
+
+        .dark-mode .know-more-button:hover,
+        .dark-mode .subscribe-button:hover {
+            background-color: #333333;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                padding: 15px;
+            }
+
+            section.hero h1 {
+                font-size: 36px;
+            }
+
+            section.hero p {
+                font-size: 18px;
+            }
+
+            .know-more-button, .subscribe-button {
+                padding: 10px 20px;
+                font-size: 16px;
+            }
+
+            section.teachers h2, .how-it-works h2 {
+                font-size: 24px;
+            }
+
+            section.teachers p {
+                font-size: 18px;
+            }
+
+            .how-it-works-list {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .how-it-works-item {
+                width: 90%;
+            }
+        }
+
+        .chat-icon {
+            position: fixed;
+            bottom: 20px;
+            left: 20px;
+            width: 60px;
+            height: 60px;
+            background-color: #003366;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+            transition: background-color 0.3s;
+        }
+
+        .chat-icon:hover {
+            background-color: #005599;
+        }
+
+        .chat-icon::after {
+            content: '💬'; /* رمز المحادثة */
+            font-size: 24px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div class="dark-mode-toggle" onclick="toggleDarkMode()">
+            <input type="checkbox" id="darkModeCheckbox" onchange="toggleDarkMode()">
+            <label class="dark-mode-slider" for="darkModeCheckbox"></label>
+        </div>
+        <nav>
+            <ul>
+                <li><a href="#">الرئيسية</a></li>
+                <li><a href="login.html">تسجيل الدخول</a></li>
+                <li><a href="signup.html">إنشاء حساب</a></li>
+                <li><a href="course.html" style="margin-left: 20px;">الكورسات</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <section class="hero">
+        <h1>مرحباً بكم في سهلنهالك</h1>
+        <p>تعلم البرمجة بكل سهولة ويسر!</p>
+        <button class="know-more-button">أعرف أكثر</button>
+    </section>
+
+    <section class="teachers">
+        <h2>معلمونا</h2>
+        <p>فريق من المحترفين لتعليمكم البرمجة.</p>
+        <div class="teachers-marquee">
+            <div class="teachers-list">
+                <div class="teacher"><img src="images/teacher1.jpg" alt="معلم 1"><br>أحمد</div>
+                <div class="teacher"><img src="images/teacher2.jpg" alt="معلم 2"><br>سارة</div>
+                <div class="teacher"><img src="images/teacher3.jpg" alt="معلم 3"><br>محمد</div>
+                <div class="teacher"><img src="images/teacher4.jpg" alt="معلم 4"><br>فاطمة</div>
+                <div class="teacher"><img src="images/teacher5.jpg" alt="معلم 5"><br>علي</div>
+            </div>
+        </div>
+        <button class="subscribe-button">اشتراك الآن</button>
+    </section>
+
+    <div class="marquee">
+        <div>أحدث الأخبار والتحديثات من سهلنهالك!</div>
+    </div>
+
+    <section class="how-it-works">
+        <h2>كيف يعمل؟</h2>
+        <div class="how-it-works-list">
+            <div class="how-it-works-item">اختر الكورس المناسب لك</div>
+            <div class="how-it-works-item">تسجيل حساب جديد</div>
+            <div class="how-it-works-item">ابدأ التعلم!</div>
+        </div>
+    </section>
+
+    <footer>
+        <p>جميع الحقوق محفوظة &copy; 2024 سهلنهالك</p>
+    </footer>
+
+    <div class="chat-icon" onclick="openChat()"></div>
+
+    <script>
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+        }
+
+        function openChat() {
+            // فتح نافذة الدردشة (يمكنك وضع كود الدردشة هنا)
+            alert('فتح الدردشة!');
+        }
+    </script>
+
+</body>
+
+</html>
